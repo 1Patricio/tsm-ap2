@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.aula09.ui.fragments.MainFragment"
-        android:label="MainFragment" >
+        android:label="Home" >
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.aula09.ui.fragments.DetailsFragment"
-        android:label="fragment_details"
+        android:label="Detalhes"
         tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_detailsFragment_to_mainFragment"
