@@ -1,21 +1,20 @@
 package com.example.aula09
 
-import android.content.Intent
-import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.RecyclerView
-import com.example.aula09.data.TodoRepository
-import com.example.aula09.ui.adapter.TodoAdapter
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 
 
 class MainActivity : AppCompatActivity() {
-
-    val todoRepository = TodoRepository()
-    private lateinit var adapter: TodoAdapter
+    private lateinit var navController: NavController
+    private lateinit var navHost: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,29 +25,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        // Preciso criar a instancia do adapter
-        adapter = TodoAdapter(
-            onDelete = { todo ->
-                val newList = todoRepository.todoList.toMutableList()
-                newList.remove(todo)
-                todoRepository.todoList = newList
-                adapter.submitList(newList)
-                true
-            }, actionView = { todo ->
-                val intent = Intent(this, DetailsActivity::class.java).apply {
-                    this.putExtras(bundleOf("todo" to todo))
-                }
-                startActivity(intent)
-            })
+        var navHost = supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
+        navController = navHost.navController
 
-        // Preciso recuperar a recyclerview
-        val rc = findViewById<RecyclerView>(R.id.recycler)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
 
-        // Preciso linkar a recyclerview com o adapter
-        rc.adapter = adapter
-
-        // Preciso submter os dados pra lista
-        adapter.submitList(todoRepository.todoList)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -1,8 +1,7 @@
-import org.apache.tools.ant.util.JavaEnvUtils.VERSION_11
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidx.navigation.safe.args)
 }
 
 android {
@@ -38,7 +37,9 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    implementation(libs.serialization)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

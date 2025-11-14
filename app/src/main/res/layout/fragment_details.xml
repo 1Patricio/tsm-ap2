@@ -5,30 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#669df6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="App Todo"
-        app:titleTextColor="@color/white" />
-
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardTodo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="14dp"
         android:backgroundTint="@color/cardview_light_background"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
